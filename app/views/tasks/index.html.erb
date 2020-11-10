@@ -2,8 +2,15 @@
 
 <ul>
   <% @tasks.each do |task| %>
-    <li><%= task.completed ? "[X]" : "[ ]"%>
+    <li>
+      <% if task.completed == true %>
+      <input type="checkbox" checked disabled>
+      <% else  %>
+      <input type="checkbox" disabled>
+      <% end %>
       <%= link_to task.title, task_path(task)%>
+      <br>
+      <%= link_to "Destroy this task", task_path(task), method: :delete, data: { confirm: "Delete?" } %>
     </li>
   <% end %>
 </ul>
